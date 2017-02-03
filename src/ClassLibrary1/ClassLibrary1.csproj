@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard1.4</TargetFramework>
+    <RepoUri>https://raw.githubusercontent.com/stffabi/sourcelink-test/</RepoUri>
+  </PropertyGroup>
+  <Target Name="GenerateSourceLink">
+    <Exec Command="git rev-parse HEAD">
+      <Output TaskParameter="ConsoleOutput" PropertyName="LatestCommit" />
+    </Exec>
+    <WriteLinesToFile File="source_link.json" Lines="{&quot;documents&quot;: { &quot;$(OutputDir)/*&quot; : &quot;$(RepoUri)/$(LatestCommit)/*&quot; }}" />
+  </Target>
+</Project>
