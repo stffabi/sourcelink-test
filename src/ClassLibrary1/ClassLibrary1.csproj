@@ -16,6 +16,6 @@
       <Output TaskParameter="ConsoleOutput" PropertyName="GitRootFolder" />
     </Exec>
 
-    <WriteLinesToFile File="$(SourceLink)" Lines="{&quot;documents&quot;: { &quot;$(GitRootFolder)/*&quot; : &quot;$(RepoUri)/$(LatestCommit)/*&quot; }}" />
+    <WriteLinesToFile File="$(SourceLink)" Lines="{&quot;documents&quot;: { &quot;$([System.IO.Path]::GetFullPath('$(GitRootFolder)/').Replace('\','\\'))*&quot; : &quot;$(RepoUri)/$(LatestCommit)/*&quot; }}" />   
   </Target>
 </Project>
